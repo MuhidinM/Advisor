@@ -1,0 +1,42 @@
+<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header  align-items-center">
+      <a class="navbar-brand" href="{% url 'dashboard' %}">
+        <img src="/static/assets/img/brand/astu.png" class="navbar-brand-img" alt="Argon Design - Jinja Template Logo.">
+      </a>
+    </div>
+    <div class="navbar-inner">
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Nav items -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link {% if 'dashboard' in segment %} active {% endif %}" href="{% url 'dashboard' %}">
+              <i class="ni ni-tv-2 text-primary"></i>
+              <span class="nav-link-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'student' in segment %} active {% endif %}" href="{% url 'student' %}">
+              <i class="ni ni-single-02 text-yellow"></i>
+              <span class="nav-link-text">Student</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'advisor' in segment %} active {% endif %}" href="{% url 'advisor' %}">
+              <i class="ni ni-hat-3 text-primary"></i>
+              <span class="nav-link-text">Advisor</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">
+              <i class="ni ni-user-run text-red"></i>
+              <span class="nav-link-text">Logout</span>
+            </a>
+          </li>           
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
