@@ -1,50 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Student List</title>
-        <style>
-        table {
-          font-family: arial, sans-serif;
-          border-collapse: collapse;
-          width: 100%;
-        }
-        
-        td, th {
-          border: 1px solid #dddddd;
-          text-align: left;
-          padding: 3px;
-        }
-        
-        tr:nth-child(even) {
-          background-color: #dddddd;
-        }
-        </style>
-    </head>
-    <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Student Id</th>
-                    <th>Section</th>
-                    <th>Group</th>
-                    <th>Advisor</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for student in items %}
-                    <tr>
-                        <th>{{ student.fname }} {{ student.mname }} {{ student.lname }}</th>
-                        <td>{{ student.studentid }}</td>
-                        <td>{{ student.section }}</td>
-                        <td>{{ student.group }}</td>
-                        <td>{{ student.advisor }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </body>
-</html>
+{% extends 'layouts/base.html' %}
+{% block title %}
+    Add Student
+{% endblock title %}
+{% block content %}
+    <div class="header pb-6 d-flex align-items-center"
+         style="min-height: 200px">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+        <div class="row">
+            <div class="col-xl-2"></div>
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">Import</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="pl-lg-4">
+                                <div class="row align-items-center">
+                                    <div class="col-10">
+                                        <input type="file" name="myfile" id="myfile">
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="submit" class="btn btn-md btn-primary">Upload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+{% endblock javascripts %}

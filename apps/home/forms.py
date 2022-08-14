@@ -1,5 +1,3 @@
-from distutils.fancy_getopt import FancyGetopt
-from tokenize import group
 from django import forms
 from django.forms import ModelForm
 from .models import Student, Advisor
@@ -9,28 +7,26 @@ class StudentForm(ModelForm):
     class Meta:
         model = Student
         fields = '__all__'
+        
+    program_choices = (
+        ('pre engineering' , 'Pre Engineering'),
+        ('pre science', 'Pre Science')
+    )
 
-    fname = forms.CharField(
+    name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "First Name",
+                "placeholder": "Name",
                 "class": "form-control"
             }
         ), required=False)
-    mname = forms.CharField(
-        widget=forms.TextInput(
+    program = forms.ChoiceField(
+        widget=forms.Select(
             attrs={
-                "placeholder": "Middle Name",
+                "placeholder": "Program",
                 "class": "form-control"
             }
-        ), required=False)
-    lname = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Last Name",
-                "class": "form-control"
-            }
-        ), required=False)
+        ),choices=program_choices, required=False)
     studentid = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -45,13 +41,6 @@ class StudentForm(ModelForm):
                 "class": "form-control"
             }
         ), max_value=100, min_value=1, required=False)
-    group = forms.IntegerField(
-        widget=forms.NumberInput(
-            attrs={
-                "placeholder": "Group",
-                "class": "form-control"
-            }
-        ), max_value=200, min_value=1, required=False)
 
 
 class AdvisorForm(ModelForm):
@@ -59,31 +48,24 @@ class AdvisorForm(ModelForm):
         model = Advisor
         fields = '__all__'
 
-    fname = forms.CharField(
+    name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "First Name",
+                "placeholder": "Name",
                 "class": "form-control"
             }
         ))
-    mname = forms.CharField(
+    address = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Middle Name",
+                "placeholder": "Address",
                 "class": "form-control"
             }
         ))
-    lname = forms.CharField(
+    school = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Last Name",
-                "class": "form-control"
-            }
-        ))
-    department = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Department",
+                "placeholder": "School",
                 "class": "form-control"
             }
         ))
@@ -91,6 +73,27 @@ class AdvisorForm(ModelForm):
     
     
 class AssignForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = ('advisor', 'section')
+        
+    advisor = forms.ModelChoiceField(
+        widget=forms.Select(
+            attrs={
+                "placeholder": "Select Advisor",
+                "class": "form-control"
+            }
+        ),required=False, queryset=Advisor.objects.all())
+    
+    section = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                "placeholder": "Section",
+                "class": "form-control"
+            }
+        ), max_value=100, min_value=1, required=False)
+    
+class AssignIndividualForm(ModelForm):
     class Meta:
         model = Student
         fields = ('advisor',)

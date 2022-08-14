@@ -30,6 +30,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link {% if 'assign' in segment %} active {% endif %}" href="{% url 'assignsection' %}">
+              <i class="ni ni-check-bold text-success"></i>
+              <span class="nav-link-text">Assign</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">
               <i class="ni ni-user-run text-red"></i>
               <span class="nav-link-text">Logout</span>

@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% block title %}
-  Add Student
+  Assing
 {% endblock title %}
 {% block content %}
   <div class="header pb-6 d-flex align-items-center"
@@ -17,10 +17,7 @@
           <div class="card-header">
             <div class="row align-items-center">
               <div class="col-8">
-                <h3 class="mb-0">Add Student</h3>
-              </div>
-              <div class="col-lg-4 col-4 text-right">
-                <a href="{% url 'student_list' %}" class="btn btn-md btn-neutral">Import Excel</a>
+                <h3 class="mb-0">Assign Advisor to a Section</h3>
               </div>
             </div>
           </div>
@@ -28,36 +25,23 @@
             <form method="post">
               {% csrf_token %}
               <div class="pl-lg-4">
+                <div class="row"></div>
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-username">Name</label>
-                      {{ form.name }}
+                      <label class="form-control-label" for="input-last-name">Advisor</label>
+                      {{ form.advisor }}
                     </div>
                   </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-last-name">Student Id</label>
-                      {{ form.studentid }}
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-last-name">Section</label>
                       {{ form.section }}
                     </div>
                   </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-last-name">Program</label>
-                      {{ form.program }}
-                    </div>
-                  </div>
                 </div>
                 <div class="col-12 text-right">
-                  <input type="submit" name="Submit" class="btn btn-md btn-primary">
+                  <input type="submit" name="Assign" class="btn btn-md btn-primary">
                 </div>
               </div>
             </form>

@@ -4,8 +4,12 @@
 =========================================================
 * Product Page: https://www.creative-tim.com/product/argon-dashboard
 
+
 * Copyright  Creative Tim (http://www.creative-tim.com)
 * Coded by www.creative-tim.com
+
+
+
 =========================================================
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
@@ -25,44 +29,56 @@
   <!-- Icons -->
   <link rel="stylesheet" href="/static/assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="/static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="/static/assets/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="/static/md/buttons.dataTables.min.css" type="text/css">
+  <link rel="stylesheet" href="/static/md/jquery.dataTables.min.css" type="text/css">
 
   <!-- Specific CSS goes HERE -->
   {% block stylesheets %}{% endblock stylesheets %}
 
 </head>
 
-<body class="bg-default">
+<body class="">
 
-  <div class="main-content">
+  {% include "includes/sidenav.html" %}
 
-    <!-- {% include "includes/navigation-fullscreen.html" %} -->
+  <div class="main-content" id="panel">
 
-    <!-- Header -->
-    <div class="header bg-gradient-primary py-7 py-lg-8">
-      <div class="container">
-        </div>
-      </div>
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
-    </div>
-    
+    {% include "includes/navigation.html" %}
+
     {% block content %}{% endblock content %}
 
-    <!-- {% include "includes/footer-fullscreen.html" %} -->
-
   </div>
-    
+
   {% include "includes/scripts.html" %}
 
   <!-- Specific JS goes HERE --> 
   {% block javascripts %}{% endblock javascripts %}
-  
+
   <script src="/static/assets/js/argon.js?v=1.2.0"></script>
+  <script src="/static/md/jquery-3.5.1.js"></script>
+  <script src="/static/md/jquery.dataTables.min.js"></script>
+  <script src="/static/md/dataTables.buttons.min.js"></script>
+  <script src="/static/md/jszip.min.js"></script>
+  <script src="/static/md/pdfmake.min.js"></script>
+  <script src="/static/md/vfs_fonts.js"></script>
+  <script src="/static/md/buttons.html5.min.js"></script>
+  <script src="/static/md/buttons.print.min.js"></script>
+
+  <script>
+
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        } );
+    } );
+
+  </script>
 
 </body>
 
